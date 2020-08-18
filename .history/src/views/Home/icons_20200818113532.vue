@@ -20,9 +20,6 @@
 <script>
 export default {
   name: 'HomeIcons',
-  props:{
-    swiperOption:Array
-  },
   data () {
     return {
       swiperOption:{
