@@ -1,11 +1,11 @@
 <template>
   <div class="about">
       <div class="back">
-        <span class="iconfont">&#xe652;</span>
+        <span class="iconfont icon1" >&#xe652;</span>
       </div>        
-      <el-input v-model="city" placeholder="输入城市/景点/游玩主题"></el-input>
+      <el-input :v-model="city" placeholder="输入城市/景点/游玩主题"></el-input>
       <div class="city">
-        <span>上海</span>
+        <span>{{this.city}}</span>
         <i class="iconfont">&#xe658;</i>
       </div>
   </div>
@@ -13,9 +13,12 @@
 <script>
 export default {
   name: 'HomeHeader',
+  props:{
+    city: String
+  },
   data(){
     return{
-      city:""
+  
     }
   }
 }
@@ -28,20 +31,26 @@ export default {
     background-color: #00bcd4;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-  .back{
-    width: 5%;
-    
   }
   .back .iconfont{
     font-size: 24px;
   }
+  .el-input{
+    width: 72%;
+    margin: auto;
+  }
   .about >>> .el-input__inner{
-    width: 100%;
     height: 30px;
   }
   .city{
-    width: 8%;
+    color: white;
+    width: 3rem;
+    font-size: 16px;
+    margin-right: 1vw;
+  }
+  .iconfont{
+    color: white;
+    font-size: 14px;
+    margin-left: 0.5vw;
   }
 </style>
