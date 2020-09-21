@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HomeHeader :city='city'></HomeHeader>
+    <HomeHeader></HomeHeader>
     <swiper-list :swiperList="swiperList"></swiper-list>
     <Icon :iconList='iconList'></Icon>
     <Recommend :recommendList = 'recommendList'></Recommend>
@@ -15,6 +15,7 @@ import Icon from './icons.vue'
 import Recommend from './Recommend'
 import Weekend from './Weekend'
 import axios from 'axios'
+import {mapState} from 'vuex'
 
 export default {
   name: 'Home',
@@ -27,7 +28,7 @@ export default {
   },
   data(){
     return{
-      city:'',
+      lastCity:'',
       swiperList:[],
       iconList:[],
       recommendList:[],
@@ -35,16 +36,25 @@ export default {
     }
   },
   mounted(){
+    this.lastCity = this.city
     this.getHomeinfo()
+  },
+  activated(){
+    if(this.lastCity !== this.city){
+      this.lastCity = this.city
+      this.getHomeinfo()
+    }
+  },
+  computed:{
+    ...mapState(['city'])
   },
   methods:{
     getHomeinfo(){
-      axios.get('/index.json').then(this.getHomeinfoSucc)
+      axios.get('/index.json?city=' + this.city).then(this.getHomeinfoSucc)
     },
     getHomeinfoSucc(res){
       res = res.data
       if(res.ret&&res.data){
-        this.city = res.data.city
         this.swiperList = res.data.swiperList
         this.iconList = res.data.iconList
         this.recommendList = res.data.recommendList

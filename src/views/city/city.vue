@@ -8,7 +8,6 @@
       </alphabet>
   </div>
 </template>
-
 <script>
 import axios from 'axios'
 import Head from './components/city_head'
@@ -33,7 +32,6 @@ export default {
       axios.get('/city.json').then(this.getCityinfoSucc)
     },
     getCityinfoSucc(res){
-      console.log(res)
       res = res.data
       if(res.ret&&res.data){
           this.cities = res.data.cities,

@@ -3,10 +3,10 @@
       <div class="back">
         <span class="iconfont icon1">&#xe652;</span>
       </div>        
-      <el-input :v-model="city" placeholder="输入城市/景点/游玩主题"></el-input>
+      <el-input  placeholder="输入城市/景点/游玩主题"></el-input>
       <div class="city">
         <router-link to="/city">
-          <span>{{this.city}}</span>
+          <span>{{this.$store.state.city}}</span>
           <i class="iconfont">&#xe658;</i>
         </router-link>
       </div>
@@ -15,9 +15,6 @@
 <script>
 export default {
   name: 'HomeHeader',
-  props:{
-    city: String
-  },
   data(){
     return{
   
@@ -32,23 +29,27 @@ export default {
     color: #333;
     background-color: #00bcd4;
     display: flex;
+    justify-content:space-between;
     align-items: center;
+  }
+  .back{
+    width: 5%;
+    position: relative;
   }
   .back .iconfont{
     font-size: 24px;
   }
   .el-input{
-    width: 72%;
-    margin: auto;
+    max-width: 70%;
+    margin: 0; 
   }
   .about >>> .el-input__inner{
     height: 30px;
   }
   .city{
+    min-width: 15%;
     color: white;
     font-size: 16px;
-    
-    margin-right: 1vw;
   }
   .city a{
     text-decoration: none;
